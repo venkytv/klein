@@ -21,6 +21,8 @@ zstyle ':zim:git-info:keys' format \
     'prompt'  '%F{${_GIT_COLOR}}<git:%f%b%c%A%B%V%D%F{${_GIT_COLOR}}>%f ' \
     'rprompt' '%F{${_GIT_COLOR}}<%R>%f '
 
+add-zsh-hook precmd git-info
+
 _VENV_COLOR=119
 venv-preexec() {
 	[[ -n "$VIRTUAL_ENV" ]] \
