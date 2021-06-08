@@ -10,13 +10,15 @@ add-zsh-hook precmd duration-info-precmd
 _GIT_COLOR=209
 _GIT_FORMAT_COLOR=226
 _GIT_ALERT_COLOR=196
+_GIT_DOWN_COLOR=118
+_GIT_UP_COLOR=196
 zstyle ':zim:git-info:branch' format '%b'
 zstyle ':zim:git-info:commit' format '%c'
 zstyle ':zim:git-info:remote' format '%R'
-zstyle ':zim:git-info:behind' format '%F{${_GIT_FORMAT_COLOR}}⇣%f'
-zstyle ':zim:git-info:ahead' format '%F{${_GIT_FORMAT_COLOR}}⇡%f'
-zstyle ':zim:git-info:diverged' format '%F{${_GIT_ALERT_COLOR}}⇵%f'
-zstyle ':zim:git-info:dirty' format '%F{${_GIT_FORMAT_COLOR}}*%f'
+zstyle ':zim:git-info:behind' format '%F{${_GIT_DOWN_COLOR}}⇣⇣%f'
+zstyle ':zim:git-info:ahead' format '%F{${_GIT_UP_COLOR}}⇡⇡%f'
+zstyle ':zim:git-info:diverged' format '%F{${_GIT_UP_COLOR}}⇡%F{_GIT_DOWN_COLOR}⇣%f'
+zstyle ':zim:git-info:dirty' format '%F{${_GIT_FORMAT_COLOR}}**%f'
 zstyle ':zim:git-info:keys' format \
     'prompt'  '%F{${_GIT_COLOR}}<git:%f%b%c%A%B%V%D%F{${_GIT_COLOR}}>%f ' \
     'rprompt' '%F{${_GIT_COLOR}}<%R>%f '
