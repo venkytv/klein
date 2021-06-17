@@ -44,7 +44,7 @@ add-zsh-hook precmd venv-preexec
 
 mexenv-preexec() {
 	[[ -n "$__MEXENV__" ]] \
-		&& __mexenv_prompt="mexenv:%F{${KLEIN_MEXENV_COLOR}}${__MEXENV__}%f" \
+		&& __mexenv_prompt="mexenv:%F{${KLEIN_MEXENV_COLOR}}${__MEXENV__}-${__REGION__}%f" \
 		|| __mexenv_prompt=
 }
 add-zsh-hook precmd mexenv-preexec
