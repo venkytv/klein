@@ -56,7 +56,15 @@ cloudlet-preexec() {
 }
 add-zsh-hook precmd cloudlet-preexec
 
+kubectx-preexec() {
+	local color="$KLEIN_MEXENV_COLOR"
+	local kubectx=$( __current_kubectx )
+	[[ -n "$__MEXENV__" && "$kubectx" != "${__MEXENV__}-${__REGION__}" ]] && color="$KLEIN_ERR_COLOR"
+	__kubectx_prompt="%F{${color}}<kube:%f${kubectx}%F{${color}}>%f "
+}
+add-zsh-hook precmd kubectx-preexec
+
 PS1='
-%B%F{${KLEIN_PWD_COLOR}}%~%f%(?.. %F{${KLEIN_ERR_COLOR}}<rc:%f%?%F{${KLEIN_ERR_COLOR}}>%f)%(1j. %F{${KLEIN_BG_COLOR}}<bg:%f%j%F{${KLEIN_BG_COLOR}}>%f.) ${(e)git_info[prompt]}${__venv_prompt}${__cloudlet_prompt}${duration_info}
+%B%F{${KLEIN_PWD_COLOR}}%~%f%(?.. %F{${KLEIN_ERR_COLOR}}<rc:%f%?%F{${KLEIN_ERR_COLOR}}>%f)%(1j. %F{${KLEIN_BG_COLOR}}<bg:%f%j%F{${KLEIN_BG_COLOR}}>%f.) ${(e)git_info[prompt]}${__kubectx_prompt}${__venv_prompt}${__cloudlet_prompt}${duration_info}
 ${__mexenv_prompt}%(?.%F{${KLEIN_PROMPT_COLOR}›%f.%F{${KLEIN_ERR_COLOR}»%f)%b '
 RPROMPT='%B${(e)git_info[rprompt]}%F{${KLEIN_TIME_COLOR}}[%w %*]%f%b'
